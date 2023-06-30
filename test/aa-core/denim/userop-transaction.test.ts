@@ -59,7 +59,7 @@ import {
       );
   
       const TestToken2 = await ethers.getContractFactory("DenimTestToken");
-      const testToken2 = await TestToken.deploy(
+      const testToken2 = await TestToken2.deploy(
         denimAccountContract.address,
         parseEther("3.0")
       );
