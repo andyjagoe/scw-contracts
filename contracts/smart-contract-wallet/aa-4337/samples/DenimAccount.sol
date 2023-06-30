@@ -32,7 +32,7 @@ contract DenimAccount is
 
     IEntryPoint private _entryPoint;
 
-    event SimpleAccountInitialized(
+    event DenimAccountInitialized(
         IEntryPoint indexed entryPoint,
         address indexed owner
     );
@@ -160,7 +160,7 @@ contract DenimAccount is
         _DOMAIN_SEPARATOR = _calculateDomainSeparator(
             DOMAIN_SEPARATOR_CHAIN_ID = chainId
         );
-        emit SimpleAccountInitialized(_entryPoint, owner);
+        emit DenimAccountInitialized(_entryPoint, owner);
     }
 
     function _domainSeparator() internal view returns (bytes32) {
