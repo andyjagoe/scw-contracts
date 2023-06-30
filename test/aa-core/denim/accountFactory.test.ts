@@ -1,5 +1,7 @@
 import { expect } from "chai";
 import { ethers } from "hardhat";
+import { id } from "ethers/lib/utils";
+
 
 describe("DenimAccountFactory", function () {
   async function deployDenimAccountFactoryFixture() {
@@ -51,13 +53,19 @@ describe("DenimAccountFactory", function () {
       const { owner, denimAccountFactory } =
         await await deployDenimAccountFactoryFixture();
 
+      const accountType = "google"
+      const userId = "first.last@gmail.com"
+
       const predictedAddress = await denimAccountFactory.getAddress(
         owner.address,
-        "0xa"
+        ethers.BigNumber.from(id(`${accountType}:${userId}`))
       );
 
       const receipt = await denimAccountFactory
-        .createAccount(owner.address, "0xa")
+        .createAccount(
+          owner.address, 
+          ethers.BigNumber.from(id(`${accountType}:${userId}`))
+          )
         .then((tx: any) => tx.wait());
 
       const denimAccountAddress = receipt.events.find(
