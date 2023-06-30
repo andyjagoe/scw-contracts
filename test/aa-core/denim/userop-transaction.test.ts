@@ -131,7 +131,6 @@ import {
           await ethers.provider.getBalance(denimVerifyingPaymaster.address)
         ).to.eq(0);
   
-        // this statement is failing
         const tx = await entryPoint.handleOps([op], beneficiary.address);
   
         const denimAccountBalanceAfter = await ethers.provider.getBalance(
